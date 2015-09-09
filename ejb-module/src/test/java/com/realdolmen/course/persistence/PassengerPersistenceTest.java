@@ -1,6 +1,7 @@
 package com.realdolmen.course.persistence;
 
 import com.realdolmen.course.domain.Passenger;
+import com.realdolmen.course.domain.PassengerId;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -17,20 +18,22 @@ public class PassengerPersistenceTest extends DataSetPersistenceTest{
 
     @Test
     public void passengerCanBePersisted() throws Exception {
-        Passenger passenger = new Passenger("1234", "testFName", "testLName", 10);
+        Passenger passenger = new Passenger("1234" , "Robin", "DHaese", 10);
         entityManager().persist(passenger);
-        assertNotNull(passenger.getId());
+        assertNotNull(passenger.getPassengerId().getSsn());
     }
 
     @Test(expected = PersistenceException.class)
-    public void passengerCanNotBePersistedWithoutSSN() throws Exception {
+    public void passengerCanNotBePersistedPassengerId() throws Exception {
         Passenger passenger = new Passenger(null, "testFName", "testLName", 10);
+        passenger.setPassengerId(null);
         entityManager().persist(passenger);
     }
 
     @Test
     public void passengerCanBeRetrievedById() throws Exception {
-        assertEquals("fname1", entityManager().find(Passenger.class, 1000L).getFirstName());
+        PassengerId passengerId = new PassengerId("12345", "lname1");
+        assertEquals("fname1", entityManager().find(Passenger.class, passengerId).getFirstName());
     }
 
     @Test

@@ -9,40 +9,32 @@ import java.io.Serializable;
 @Entity
 @NamedQuery(name="Passenger.getAllPassengers", query="SELECT p FROM Passenger p")
 public class Passenger implements Serializable {
-    @Id
-    @GeneratedValue
-    private Long id;
-    @Column(nullable=false)
-    private String ssn;
 
+
+    @EmbeddedId
+    private PassengerId passengerId;
     private String firstName;
-    private String lastName;
     private Integer frequentFlyerMiles;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] picture;
 
     /*used by JPA*/
     protected Passenger(){}
 
     public Passenger( String ssn, String firstName, String lastName, Integer frequentFlyerMiles){
-        this.ssn = ssn;
+        passengerId = new PassengerId(ssn,lastName);
         this.firstName = firstName;
-        this.lastName = lastName;
         this.frequentFlyerMiles = frequentFlyerMiles;
     }
 
-    public Long getId() {
-        return id;
+    public PassengerId getPassengerId() {
+
+        return passengerId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getSsn() {
-        return ssn;
-    }
-
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
+    public void setPassengerId(PassengerId passengerId) {
+        this.passengerId = passengerId;
     }
 
     public String getFirstName() {
@@ -53,19 +45,38 @@ public class Passenger implements Serializable {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public Integer getFrequentFlyerMiles() {
         return frequentFlyerMiles;
     }
 
     public void setFrequentFlyerMiles(Integer frequentFlyerMiles) {
         this.frequentFlyerMiles = frequentFlyerMiles;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Passenger passenger = (Passenger) o;
+
+        if (!getPassengerId().equals(passenger.getPassengerId())) return false;
+        return !(getFirstName() != null ? !getFirstName().equals(passenger.getFirstName()) : passenger.getFirstName() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getPassengerId().hashCode();
+        result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
+        return result;
     }
 }
