@@ -2,31 +2,51 @@ package com.realdolmen.course.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by RDEAX37 on 9/09/2015.
  */
 @Entity
-@NamedQuery(name="Passenger.getAllPassengers", query="SELECT p FROM Passenger p")
+@NamedQuery(name = "Passenger.getAllPassengers", query = "SELECT p FROM Passenger p")
 public class Passenger implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(nullable=false)
+    @Column(nullable = false, updatable = false)
     private String ssn;
-
+    @Column(length = 50)
     private String firstName;
+    @Column(length = 50)
     private String lastName;
     private Integer frequentFlyerMiles;
+    @Lob
+    private byte[] picture;
+    @Column(nullable = false, updatable = false)
+    @Temporal(value = TemporalType.DATE)
+    private Date dateOfBirth;
+    @Transient
+    private int age;
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private PassengerType passengerType;
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date lastFlight;
 
     /*used by JPA*/
-    protected Passenger(){}
+    protected Passenger() {
+    }
 
-    public Passenger( String ssn, String firstName, String lastName, Integer frequentFlyerMiles){
+    public Passenger(String ssn, String firstName, String lastName, Integer frequentFlyerMiles, byte[] picture, Date dateOfBirth, PassengerType passengerType, Date lastFlight) {
         this.ssn = ssn;
         this.firstName = firstName;
         this.lastName = lastName;
         this.frequentFlyerMiles = frequentFlyerMiles;
+        this.picture = picture;
+        this.dateOfBirth = dateOfBirth;
+        this.age = age;
+        this.passengerType = passengerType;
+        this.lastFlight = lastFlight;
     }
 
     public Long getId() {
@@ -67,5 +87,61 @@ public class Passenger implements Serializable {
 
     public void setFrequentFlyerMiles(Integer frequentFlyerMiles) {
         this.frequentFlyerMiles = frequentFlyerMiles;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public PassengerType getPassengerType() {
+        return passengerType;
+    }
+
+    public void setPassengerType(PassengerType passengerType) {
+        this.passengerType = passengerType;
+    }
+
+    public Date getLastFlight() {
+        return lastFlight;
+    }
+
+    public void setLastFlight(Date lastFlight) {
+        this.lastFlight = lastFlight;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Passenger passenger = (Passenger) o;
+
+        return getSsn().equals(passenger.getSsn());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getSsn().hashCode();
     }
 }
