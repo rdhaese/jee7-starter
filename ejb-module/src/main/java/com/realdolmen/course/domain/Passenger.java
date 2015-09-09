@@ -21,6 +21,17 @@ public class Passenger implements Serializable {
     private String firstName;
     @Column(length = 50)
     private String lastName;
+    @Embedded
+    private Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     private Integer frequentFlyerMiles;
     @Lob
     private byte[] picture;
@@ -46,9 +57,15 @@ public class Passenger implements Serializable {
         this.frequentFlyerMiles = frequentFlyerMiles;
         this.picture = picture;
         this.dateOfBirth = dateOfBirth;
-        this.age = age;
         this.passengerType = passengerType;
         this.lastFlight = lastFlight;
+    }
+
+    @PostLoad
+    private void calculateAge(){
+        LocalDate now = LocalDate.now();
+        LocalDate birth = ((java.sql.Date) dateOfBirth).toLocalDate();
+        age = Period.between(birth,now).getYears();
     }
 
     public Long getId() {
@@ -108,9 +125,7 @@ public class Passenger implements Serializable {
     }
 
     public int getAge(){
-        LocalDate now = LocalDate.now();
-        LocalDate birth = ((java.sql.Date)dateOfBirth).toLocalDate();
-        return Period.between(birth,now).getYears();
+       return age;
     }
 
     public PassengerType getPassengerType() {

@@ -43,4 +43,9 @@ public class PassengerPersistenceTest extends DataSetPersistenceTest{
     public void isAgeCalculatedCorrectly() throws Exception {
         assertEquals(23, entityManager().find(Passenger.class, 1000L).getAge());
     }
+
+    @Test
+    public void canAddressBeAccessed() throws Exception {
+        assertEquals("street1.2", entityManager().find(Passenger.class, 2000L).getAddress().getStreet1());
+    }
 }
