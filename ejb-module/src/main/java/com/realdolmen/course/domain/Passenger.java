@@ -109,7 +109,7 @@ public class Passenger implements Serializable {
 
     public int getAge(){
         LocalDate now = LocalDate.now();
-        LocalDate birth = LocalDate.from(((java.sql.Date)dateOfBirth).toLocalDate());
+        LocalDate birth = ((java.sql.Date)dateOfBirth).toLocalDate();
         return Period.between(birth,now).getYears();
     }
 
