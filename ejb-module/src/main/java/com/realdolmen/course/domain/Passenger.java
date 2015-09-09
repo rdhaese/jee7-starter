@@ -2,6 +2,8 @@ package com.realdolmen.course.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 
 /**
@@ -94,7 +96,7 @@ public class Passenger implements Serializable {
     }
 
     public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = new Date(dateOfBirth.getTime());
     }
 
     public byte[] getPicture() {
@@ -105,12 +107,10 @@ public class Passenger implements Serializable {
         this.picture = picture;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public int getAge(){
+        LocalDate now = LocalDate.now();
+        LocalDate birth = LocalDate.from(((java.sql.Date)dateOfBirth).toLocalDate());
+        return Period.between(birth,now).getYears();
     }
 
     public PassengerType getPassengerType() {

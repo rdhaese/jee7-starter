@@ -38,4 +38,9 @@ public class PassengerPersistenceTest extends DataSetPersistenceTest{
     public void allPassengersCanBeRetrieved() throws Exception {
         assertEquals(3, entityManager().createNamedQuery("Passenger.getAllPassengers").getResultList().size());
     }
+
+    @Test
+    public void isAgeCalculatedCorrectly() throws Exception {
+        assertEquals(23, entityManager().find(Passenger.class, 1000L).getAge());
+    }
 }
