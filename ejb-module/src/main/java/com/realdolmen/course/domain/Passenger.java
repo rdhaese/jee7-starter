@@ -1,13 +1,14 @@
 package com.realdolmen.course.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by RDEAX37 on 9/09/2015.
  */
 @Entity
 @NamedQuery(name="Passenger.getAllPassengers", query="SELECT p FROM Passenger p")
-public class Passenger {
+public class Passenger implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
