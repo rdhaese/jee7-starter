@@ -4,9 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by RDEAX37 on 9/09/2015.
@@ -26,17 +24,14 @@ public class Passenger implements Serializable {
     @Embedded
     private Address address;
     @ElementCollection
+    @CollectionTable (name="creditcards")
+    private List<CreditCard> creditCards = new ArrayList<CreditCard>();
+    @ElementCollection
     @CollectionTable (name="preferences")
     @Column(name = "preference")
     private List<String> preferences = new ArrayList<String>();
 
-    public Address getAddress() {
-        return address;
-    }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
     private Integer frequentFlyerMiles;
     @Lob
@@ -148,6 +143,30 @@ public class Passenger implements Serializable {
 
     public void setLastFlight(Date lastFlight) {
         this.lastFlight = lastFlight;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<CreditCard> getCreditCards() {
+        return creditCards;
+    }
+
+    public void setCreditCards(List<CreditCard> creditCards) {
+        this.creditCards = creditCards;
+    }
+
+    public List<String> getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(List<String> preferences) {
+        this.preferences = preferences;
     }
 
     @Override

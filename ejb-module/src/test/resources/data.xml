@@ -8,6 +8,12 @@
     <passenger id="3000" ssn="67890" firstName="fname3" lastname="lname3" frequentFlyerMiles="300" dateOfBirth="1994-01-29 10:10:10" passengerType="OCCASIONAL" lastFlight="2004-01-29 10:10:10" street1="street1.3" street2="street2.3" city="city3" zipCode="9003" country="France"/>
 
     <preferences passenger_id="1000" preference="window seat" />
+    <preferences passenger_id="1000" preference="vegetarian" />
     <preferences passenger_id="2000" preference="large seat" />
     <preferences passenger_id="3000" preference="no seat" />
+
+    <creditcards passenger_id="1000" controlNumber="111" creditCardType="VISA" expireDate="12/18" number="111 11111 111" />
+    <creditcards passenger_id="1000" controlNumber="112" creditCardType="AMEX" expireDate="12/19" number="111 11111 222" />
+    <creditcards passenger_id="1000" controlNumber="113" creditCardType="MASTER" expireDate="12/20" number="111 11111 333" />
+    <creditcards passenger_id="3000" controlNumber="114" creditCardType="VISA" expireDate="12/18" number="444 44444 444" />
 </dataset>
