@@ -6,4 +6,8 @@
     <passenger id="1000" ssn="12345" firstName="fname1" lastname="lname1" frequentFlyerMiles="100"  dateOfBirth="1992-01-29 10:10:10" passengerType="REGULAR" lastFlight="2000-01-29 10:10:10" street1="street1.1" street2="street2.1" city="city1" zipCode="9001" country="Belgium"/>
     <passenger id="2000" ssn="98765" firstName="fname2" lastname="lname2" frequentFlyerMiles="200" dateOfBirth="1993-01-29 10:10:10" passengerType="REGULAR" lastFlight="2000-03-29 10:10:10" street1="street1.2" street2="street2.2" city="city2" zipCode="9002" country="Netherlands"/>
     <passenger id="3000" ssn="67890" firstName="fname3" lastname="lname3" frequentFlyerMiles="300" dateOfBirth="1994-01-29 10:10:10" passengerType="OCCASIONAL" lastFlight="2004-01-29 10:10:10" street1="street1.3" street2="street2.3" city="city3" zipCode="9003" country="France"/>
+
+    <preferences passenger_id="1000" preference="window seat" />
+    <preferences passenger_id="2000" preference="large seat" />
+    <preferences passenger_id="3000" preference="no seat" />
 </dataset>

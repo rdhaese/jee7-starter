@@ -4,7 +4,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by RDEAX37 on 9/09/2015.
@@ -23,6 +25,10 @@ public class Passenger implements Serializable {
     private String lastName;
     @Embedded
     private Address address;
+    @ElementCollection
+    @CollectionTable (name="preferences")
+    @Column(name = "preference")
+    private List<String> preferences = new ArrayList<String>();
 
     public Address getAddress() {
         return address;
