@@ -10,6 +10,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BookControllerTest extends Mockito {
+
     @Mock
     private BookRepository bookRepository;
 
