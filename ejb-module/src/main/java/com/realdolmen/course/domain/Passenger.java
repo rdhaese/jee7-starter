@@ -18,7 +18,8 @@ public class Passenger {
     private String lastName;
     private Integer frequentFlyerMiles;
 
-    public Passenger(){}
+    /*used by JPA*/
+    protected Passenger(){}
 
     public Passenger( String ssn, String firstName, String lastName, Integer frequentFlyerMiles){
         this.ssn = ssn;
