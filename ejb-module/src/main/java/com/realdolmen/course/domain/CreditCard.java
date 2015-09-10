@@ -13,7 +13,7 @@ public class CreditCard implements Serializable{
 
     private String number;
     private String expireDate;
-    private int controlNumber;
+    private Integer controlNumber;
     @Enumerated (value = EnumType.STRING)
     private CreditCardType creditCardType;
 

@@ -30,9 +30,6 @@ public class Passenger implements Serializable {
     @CollectionTable (name="preferences")
     @Column(name = "preference")
     private List<String> preferences = new ArrayList<String>();
-
-
-
     private Integer frequentFlyerMiles;
     @Lob
     private byte[] picture;
@@ -115,6 +112,7 @@ public class Passenger implements Serializable {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = new Date(dateOfBirth.getTime());
+        calculateAge();
     }
 
     public byte[] getPicture() {
