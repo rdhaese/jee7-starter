@@ -16,9 +16,9 @@ public class Ticket implements Serializable {
     private double price;
     @Enumerated (value = EnumType.STRING)
     private Status status;
-    @ManyToOne (cascade = CascadeType.ALL)
-    private Flight flight;
-    @ManyToOne (cascade = CascadeType.ALL)
+    /*@ManyToOne
+    private Flight flight;*/
+    @ManyToOne
     private Passenger passenger;
 
     /*Used y JPA*/
@@ -30,14 +30,15 @@ public class Ticket implements Serializable {
     }
 
     public Ticket(double price, Status status){
-        this(price, status, null);
+        this.price = price;
+        this.status = status;
     }
 
-    public Ticket(double price, Status status, Flight flight){
+   /* public Ticket(double price, Status status, Flight flight){
         setPrice(price);
         this.status = status;
         this.flight = flight;
-    }
+    }*/
 
     public Long getId(){
         return id;
@@ -66,13 +67,13 @@ public class Ticket implements Serializable {
         this.status = status;
     }
 
-    public Flight getFlight() {
+  /*  public Flight getFlight() {
         return flight;
     }
 
     public void setFlight(Flight flight) {
         this.flight = flight;
-    }
+    }*/
 
 
     public Passenger getPassenger() {
