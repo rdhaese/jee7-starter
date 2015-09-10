@@ -2,6 +2,7 @@ package com.realdolmen.course.persistence;
 
 import com.realdolmen.course.domain.DomesticFlight;
 import com.realdolmen.course.domain.Flight;
+import com.realdolmen.course.domain.InternationalFlight;
 import org.junit.Test;
 
 /**
@@ -18,11 +19,13 @@ public class FlightTest extends DataSetPersistenceTest{
 
     @Test
     public void canADomesticFlightBeFound(){
-        fail();
+        Flight flight = entityManager().find(Flight.class, 1000L);
+        assertTrue(flight instanceof DomesticFlight);
     }
 
     @Test
     public void canAnInternationalFlightBeFound(){
-        fail();
+        Flight flight = entityManager().find(Flight.class, 1001L);
+        assertTrue(flight instanceof InternationalFlight);
     }
 }
