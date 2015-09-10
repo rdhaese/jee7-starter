@@ -43,6 +43,8 @@ public class Passenger implements Serializable {
     private PassengerType passengerType;
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date lastFlight;
+    @OneToMany(mappedBy = "passenger")
+    private List<Ticket> tickets = new ArrayList<Ticket>();
 
     /*used by JPA*/
     protected Passenger() {

@@ -16,4 +16,12 @@
     <creditcards passenger_id="1000" controlNumber="112" creditCardType="AMEX" expireDate="12/19" number="111 11111 222" />
     <creditcards passenger_id="1000" controlNumber="113" creditCardType="MASTER" expireDate="12/20" number="111 11111 333" />
     <creditcards passenger_id="3000" controlNumber="114" creditCardType="VISA" expireDate="12/18" number="444 44444 444" />
+
+    <plane id="1000" type="very big" />
+
+    <flight id="1000" plane_id="1000" />
+
+    <ticket id="1000" price="150" status="PURCHASED" flight_id="1000" passenger_id="1000" />
+
+
 </dataset>
