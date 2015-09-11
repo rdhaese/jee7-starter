@@ -5,6 +5,8 @@ import com.realdolmen.course.domain.Ticket;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by RDEAX37 on 10/09/2015.
@@ -23,7 +25,7 @@ public class PassengerRepository {
     }
 
     public Passenger getOnSSN(String s) {
-       return em.createQuery(String.format("SELECT p FROM Passenger p WHERE p.ssn = %s", s), Passenger.class).getSingleResult();
+       return em.createQuery("SELECT p FROM Passenger p WHERE p.ssn = :ssn", Passenger.class).setParameter("ssn", s).getSingleResult();
     }
 
     public Passenger getOnId(long id) {
@@ -42,5 +44,30 @@ public class PassengerRepository {
     public Passenger refresh(Passenger passenger) {
         em.refresh(passenger);
         return passenger;
+    }
+
+    public List<Passenger> findAll(){
+        return em.createNamedQuery("Passenger.getAllPassengers").getResultList();
+    }
+
+    public List<String> findAllLastNames(){
+        return em.createQuery("SELECT p.lastName From Passenger p").getResultList();
+    }
+
+    public long totalFrequentFlyerMiles(){
+        return em.createQuery("SELECT SUM(p.frequentFlyerMiles) FROM Passenger p", Long.class).getSingleResult();
+    }
+
+    public Collection<Ticket> findTicketsByPassengerId(long id){
+            return em.createQuery("SELECT t FROM Passenger p JOIN p.tickets t WHERE p.id = :id", Ticket.class).setParameter("id", id).getResultList();
+    }
+
+    public void deleteAll(){
+        //Can't perform following query due to constraints
+     /*em.createQuery("DELETE FROM Passenger p").executeUpdate();*/
+
+        for (Passenger p : findAll()){
+            delete(p);
+        }
     }
 }

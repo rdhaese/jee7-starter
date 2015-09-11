@@ -43,7 +43,7 @@ public class Passenger extends AbstractEntity {
     private PassengerType passengerType;
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date lastFlight;
-    @OneToMany(mappedBy = "passenger")
+    @OneToMany(mappedBy = "passenger", cascade = CascadeType.REMOVE)
     private List<Ticket> tickets = new ArrayList<Ticket>();
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date dateLastUpdated;
@@ -74,8 +74,7 @@ public class Passenger extends AbstractEntity {
     @PostUpdate
     private void calculateAge() {
         LocalDate now = LocalDate.now();
-        java.sql.Date sqlDate = new java.sql.Date(dateOfBirth.getTime());
-        LocalDate birth = sqlDate.toLocalDate();
+        LocalDate birth = new java.sql.Date(dateOfBirth.getTime()).toLocalDate();
         age = Period.between(birth, now).getYears();
     }
 

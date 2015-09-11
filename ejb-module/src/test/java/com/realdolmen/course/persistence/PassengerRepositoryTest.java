@@ -67,4 +67,33 @@ public class PassengerRepositoryTest extends DataSetPersistenceTest{
         assertNotEquals("newName", passengerRepo.refresh(passenger).getFirstName());
     }
 
+    @Test
+    public void canAllPassengersBeFound(){
+        assertEquals(3, passengerRepo.findAll().size());
+    }
+
+    @Test
+    public void canAllLastNamesBeFound(){
+        assertEquals(3, passengerRepo.findAllLastNames().size());
+    }
+
+    @Test
+    public void areTotalFlyingMylesCorrect(){
+        assertEquals(600, passengerRepo.totalFrequentFlyerMiles());
+    }
+
+    @Test
+    public void canAllTicketsForAPassengerIdBeFound(){
+        assertEquals(2, passengerRepo.findTicketsByPassengerId(1000L).size());
+    }
+
+    @Test
+    public void canAllBeDeleted(){
+        assertEquals(3, passengerRepo.findAll().size());
+        passengerRepo.deleteAll();
+        entityManager().flush();
+        entityManager().clear();
+        assertEquals(0, passengerRepo.findAll().size());
+    }
+
 }
