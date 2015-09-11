@@ -20,7 +20,7 @@ public class BookRepositoryTest extends DataSetPersistenceTest {
 
     @Test
     public void bookCanBeRemovedById() throws Exception {
-        repository.remove(1000);
+        repository.remove(1000L);
         assertNull(entityManager().find(Book.class, 1000L));
     }
 }

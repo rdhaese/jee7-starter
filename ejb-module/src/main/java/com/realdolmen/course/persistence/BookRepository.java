@@ -18,7 +18,7 @@ public class BookRepository implements RemoteBookRepository {
         return entityManager.createQuery("select b from Book b", Book.class).getResultList();
     }
 
-    public void remove(int id) {
+    public void remove(long id) {
         entityManager.remove(entityManager.getReference(Book.class, id));
     }
 }
