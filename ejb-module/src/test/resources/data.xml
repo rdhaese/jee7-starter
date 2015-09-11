@@ -22,6 +22,7 @@
     <flight id="1000" plane_id="1000" />
 
     <ticket id="1000" price="150" status="PURCHASED" flight_id="1000" passenger_id="1000" />
+    <ticket id="2000" price="150" status="PURCHASED" flight_id="1000" passenger_id="1000" />
 
 
 </dataset>

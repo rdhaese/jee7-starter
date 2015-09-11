@@ -13,6 +13,8 @@ import static org.junit.Assert.fail;
  */
 public class TicketTest extends DataSetPersistenceTest{
 
+
+
     @Test
     public void testTicketCanBePersisted() throws  Exception {
        Ticket t = new Ticket(50.5);
@@ -28,8 +30,9 @@ public class TicketTest extends DataSetPersistenceTest{
 
     @Test
     public void flightCanBeAssignedToATicket() throws  Exception {
-        Ticket ticket = new Ticket(50d, Status.PURCHASED);
+        Ticket ticket = entityManager().find(Ticket.class, 1000L);
         Flight flight = new Flight(ticket);
+        entityManager().persist(flight);
         ticket.setFlight(flight);
         entityManager().persist(ticket);
         assertNotNull(ticket.getFlight().getId());

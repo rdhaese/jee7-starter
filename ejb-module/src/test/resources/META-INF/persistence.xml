@@ -50,6 +50,7 @@
         <class>com.realdolmen.course.domain.Ticket</class>
         <class>com.realdolmen.course.domain.Flight</class>
         <class>com.realdolmen.course.domain.Plane</class>
+        <class>com.realdolmen.course.persistence.PassengerRepository</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />

@@ -16,7 +16,7 @@ public class Ticket implements Serializable {
     private double price;
     @Enumerated (value = EnumType.STRING)
     private Status status;
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne
     private Flight flight;
     @ManyToOne (cascade = CascadeType.ALL)
     private Passenger passenger;
