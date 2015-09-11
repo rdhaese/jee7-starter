@@ -1,9 +1,6 @@
 package com.realdolmen.course.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -13,7 +10,7 @@ import java.io.Serializable;
 public abstract class AbstractEntity implements Serializable{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Version
