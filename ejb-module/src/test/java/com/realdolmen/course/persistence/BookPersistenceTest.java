@@ -27,6 +27,6 @@ public class BookPersistenceTest extends DataSetPersistenceTest {
 
     @Test
     public void bookCanBeRetrievedById() throws Exception {
-        assertEquals("Nineteen Eighty Four", entityManager().find(Book.class, 1000).getTitle());
+        assertEquals("Nineteen Eighty Four", entityManager().find(Book.class, 1000L).getTitle());
     }
 }

@@ -91,8 +91,6 @@ public class PassengerRepositoryTest extends DataSetPersistenceTest{
     public void canAllBeDeleted(){
         assertEquals(3, passengerRepo.findAll().size());
         passengerRepo.deleteAll();
-        entityManager().flush();
-        entityManager().clear();
         assertEquals(0, passengerRepo.findAll().size());
     }
 

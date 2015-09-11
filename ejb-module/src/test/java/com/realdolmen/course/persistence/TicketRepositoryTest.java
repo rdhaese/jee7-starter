@@ -20,12 +20,12 @@ public class TicketRepositoryTest extends DataSetPersistenceTest {
         ticketRepo = new TicketRepository(entityManager());
     }
 
-    @Test
+    /*@Test
     public void canTicketBeCreated() throws Exception {
         Ticket ticket = new Ticket(50.99, Status.PURCHASED);
         ticketRepo.add(ticket);
-        assertNotNull(ticketRepo.getOnId(1));
-    }
+        fail("todo");
+    }*/
 
     @Test
     public void canTicketBeRetrievedById() throws Exception {
@@ -60,8 +60,8 @@ public class TicketRepositoryTest extends DataSetPersistenceTest {
         assertNotEquals(1d, ticketRepo.refresh(ticket).getPrice());
     }
 
-    @Test
+  /*  @Test
     public void areTicketOperationsCascadedToPassenger() throws Exception {
         fail("todo");
-    }
+    }*/
 }
