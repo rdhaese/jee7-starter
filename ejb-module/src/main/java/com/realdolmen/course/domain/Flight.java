@@ -9,11 +9,8 @@ import java.util.List;
  * Created by RDEAX37 on 10/09/2015.
  */
 @Entity
-public class Flight implements Serializable {
+public class Flight extends AbstractEntity {
 
-    @Id
-    @GeneratedValue
-    private Long id;
     @OneToMany (mappedBy = "flight")
     private List<Ticket> tickets = new ArrayList<Ticket>();
     @ManyToOne
@@ -28,14 +25,6 @@ public class Flight implements Serializable {
        for (Ticket ticket : tickets){
            this.tickets.add(ticket);
        }
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public List<Ticket> getTickets() {

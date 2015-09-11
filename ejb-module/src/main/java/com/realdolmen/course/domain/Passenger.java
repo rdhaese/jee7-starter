@@ -1,20 +1,20 @@
 package com.realdolmen.course.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.*;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by RDEAX37 on 9/09/2015.
  */
 @Entity
 @NamedQuery(name = "Passenger.getAllPassengers", query = "SELECT p FROM Passenger p")
-public class Passenger implements Serializable {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Passenger extends AbstractEntity {
+
     @Column(nullable = false, updatable = false)
     private String ssn;
     @Column(length = 50)
@@ -24,10 +24,10 @@ public class Passenger implements Serializable {
     @Embedded
     private Address address;
     @ElementCollection
-    @CollectionTable (name="creditcards")
+    @CollectionTable(name = "creditcards")
     private List<CreditCard> creditCards = new ArrayList<CreditCard>();
     @ElementCollection
-    @CollectionTable (name="preferences")
+    @CollectionTable(name = "preferences")
     @Column(name = "preference")
     private List<String> preferences = new ArrayList<String>();
     private Integer frequentFlyerMiles;
@@ -45,6 +45,8 @@ public class Passenger implements Serializable {
     private Date lastFlight;
     @OneToMany(mappedBy = "passenger")
     private List<Ticket> tickets = new ArrayList<Ticket>();
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date dateLastUpdated;
 
     /*used by JPA*/
     protected Passenger() {
@@ -61,19 +63,20 @@ public class Passenger implements Serializable {
         this.lastFlight = lastFlight;
     }
 
+    @PrePersist
+    @PreUpdate
+    private void updateDateLastUpdated() {
+        dateLastUpdated = new Date();
+    }
+
     @PostLoad
-    private void calculateAge(){
+    @PostPersist
+    @PostUpdate
+    private void calculateAge() {
         LocalDate now = LocalDate.now();
-        LocalDate birth = ((java.sql.Date) dateOfBirth).toLocalDate();
-        age = Period.between(birth,now).getYears();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        java.sql.Date sqlDate = new java.sql.Date(dateOfBirth.getTime());
+        LocalDate birth = sqlDate.toLocalDate();
+        age = Period.between(birth, now).getYears();
     }
 
     public String getSsn() {
@@ -125,8 +128,8 @@ public class Passenger implements Serializable {
         this.picture = picture;
     }
 
-    public int getAge(){
-       return age;
+    public int getAge() {
+        return age;
     }
 
     public PassengerType getPassengerType() {
@@ -167,6 +170,26 @@ public class Passenger implements Serializable {
 
     public void setPreferences(List<String> preferences) {
         this.preferences = preferences;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public Date getDateLastUpdated() {
+        return dateLastUpdated;
+    }
+
+    public void setDateLastUpdated(Date dateLastUpdated) {
+        this.dateLastUpdated = dateLastUpdated;
     }
 
     @Override

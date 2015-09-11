@@ -7,12 +7,8 @@ import java.io.Serializable;
  * Created by RDEAX37 on 10/09/2015.
  */
 @Entity
-public class Ticket implements Serializable {
+public class Ticket extends  AbstractEntity {
 
-    @Id
-    @GeneratedValue
-    private Long id;
-   // private Passenger passenger;
     private double price;
     @Enumerated (value = EnumType.STRING)
     private Status status;
@@ -39,9 +35,6 @@ public class Ticket implements Serializable {
         this.flight = flight;
     }
 
-    public Long getId(){
-        return id;
-    }
 
     public void setPrice(double price){
         if (price <= 0) {
@@ -52,10 +45,6 @@ public class Ticket implements Serializable {
 
     public double getPrice() {
         return price;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Status getStatus() {

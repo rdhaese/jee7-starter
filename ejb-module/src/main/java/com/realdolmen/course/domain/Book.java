@@ -4,14 +4,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Book implements Serializable {
+public class Book extends AbstractEntity {
     public enum Genre {
         fiction, fantasy, thriller, biography
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
     @Basic(optional = false)
     private String title;
@@ -33,9 +29,6 @@ public class Book implements Serializable {
         this.genre = genre;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
     public String getTitle() {
         return title;
