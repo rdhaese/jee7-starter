@@ -3,7 +3,6 @@ package com.realdolmen.course.domain;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -76,6 +75,22 @@ public class Passenger extends AbstractEntity {
         LocalDate now = LocalDate.now();
         LocalDate birth = new java.sql.Date(dateOfBirth.getTime()).toLocalDate();
         age = Period.between(birth, now).getYears();
+    }
+
+    public void addCreditCard(CreditCard creditCard){
+        creditCards.add(creditCard);
+    }
+
+    public void removeCreditCard(CreditCard creditCard){
+        creditCards.remove(creditCard);
+    }
+
+    public void addTicket(Ticket ticket){
+        tickets.add(ticket);
+    }
+
+    public void removeTicket(Ticket ticket){
+        tickets.remove(ticket);
     }
 
     public String getSsn() {
