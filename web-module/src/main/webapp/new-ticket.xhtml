@@ -14,9 +14,9 @@
         <p:outputLabel value="Price:" />
         <p:inputText value="#{ticketController.ticket.price}" /><br/>
         <p:outputLabel value="Flight:" />
-        <p:selectOneMenu value="#{ticketController.ticket.flight}" >
-            <f:selectItem value="#flightController.allFlights" var="flight" itemLabel="#{flight.name}" itemValue="#{flight.id}" />
-        </p:selectOneMenu>
+        <h:selectOneMenu value="#{ticketController.ticket.flight}" >
+            <f:selectItem value="#{flightController.allFlights}" var="flight" itemLabel="#{flight.name}" itemValue="#{flight.id}" />
+        </h:selectOneMenu>
         <p:commandButton value="Add Ticket" action="#{ticketController.createTicket}" />
     </h:form>
 
