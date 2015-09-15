@@ -3,6 +3,7 @@ package com.realdolmen.course.persistence;
 import com.realdolmen.course.domain.Passenger;
 import com.realdolmen.course.domain.Status;
 import com.realdolmen.course.domain.Ticket;
+import com.realdolmen.course.integration.RemoteIntegrationTest;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
 /**
  * Created by RDEAX37 on 10/09/2015.
  */
-public class TicketRepositoryTest extends DataSetPersistenceTest {
+public class TicketRepositoryTest extends RemoteIntegrationTest {
 
     private TicketRepository ticketRepo;
 
