@@ -5,6 +5,8 @@ import com.realdolmen.course.domain.*;
 import javax.ejb.LocalBean;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
+import javax.jms.*;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Date;
@@ -15,6 +17,13 @@ import java.util.Date;
 @Stateful
 @LocalBean
 public class PassengerStatefulEJB implements PassengerStatefulEJBRemote{
+
+
+    private ConnectionFactory connectionFactory;
+    private Queue queue;
+    protected Connection connection;
+    protected Session session;
+    protected MessageProducer producer;
 
     @PersistenceContext(name="MyPersistenceUnit")
     private EntityManager em;
@@ -51,4 +60,5 @@ public class PassengerStatefulEJB implements PassengerStatefulEJBRemote{
     public void checkOut(){
         em.persist(passenger);
     }
+
 }

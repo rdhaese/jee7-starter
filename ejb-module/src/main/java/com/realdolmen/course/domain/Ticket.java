@@ -17,7 +17,7 @@ public class Ticket extends  AbstractEntity {
     @ManyToOne (cascade = CascadeType.ALL)
     private Passenger passenger;
 
-    /*Used y JPA*/
+    /*Used by JPA*/
     protected Ticket(){
     }
 

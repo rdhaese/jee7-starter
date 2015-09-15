@@ -17,7 +17,7 @@ public class TicketRepositoryTest extends DataSetPersistenceTest {
 
     @Before
     public void setUp() {
-        ticketRepo = new TicketRepository(entityManager());
+        ticketRepo = new TicketRepository();
     }
 
     /*@Test

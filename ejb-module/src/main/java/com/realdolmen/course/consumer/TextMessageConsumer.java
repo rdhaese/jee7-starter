@@ -8,7 +8,7 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-@MessageDriven(activationConfig = {
+/*@MessageDriven(activationConfig = {
         @ActivationConfigProperty(propertyName = "destination", propertyValue = "java:jboss/exported/jms/queue/MyQueue"),
 })
 public class TextMessageConsumer implements MessageListener {
@@ -23,4 +23,4 @@ public class TextMessageConsumer implements MessageListener {
             throw new RuntimeException("Deal with this", e);
         }
     }
-}
+}*/
