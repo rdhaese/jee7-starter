@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>New Passenger</title>
+</h:head>
+<h:body>
+    <h1>Create New Passenger</h1>
+    <h:form>
+        <p:outputLabel value="Ssn:" />
+        <p:inputText value="#{passengerController.passenger.ssn}" /><br/>
+        <p:outputLabel value="First name:" />
+        <p:inputText value="#{passengerController.passenger.firstName}" /><br/>
+        <p:outputLabel value="Last name:" />
+        <p:inputText value="#{passengerController.passenger.lastName}" /><br/>
+        <p:commandButton value="Create Passenger" action="#{passengerController.createPassenger}" />
+    </h:form>
+</h:body>
+</html>

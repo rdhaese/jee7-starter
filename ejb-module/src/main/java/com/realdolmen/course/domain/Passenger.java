@@ -32,12 +32,10 @@ public class Passenger extends AbstractEntity {
     private Integer frequentFlyerMiles;
     @Lob
     private byte[] picture;
-    @Column(nullable = false, updatable = false)
     @Temporal(value = TemporalType.DATE)
     private Date dateOfBirth;
     @Transient
     private int age;
-    @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private PassengerType passengerType;
     @Temporal(value = TemporalType.TIMESTAMP)
@@ -48,7 +46,7 @@ public class Passenger extends AbstractEntity {
     private Date dateLastUpdated;
 
     /*used by JPA*/
-    protected Passenger() {
+    public Passenger() {
     }
 
     public Passenger(String ssn, String firstName, String lastName, Integer frequentFlyerMiles, byte[] picture, Date dateOfBirth, PassengerType passengerType, Date lastFlight) {

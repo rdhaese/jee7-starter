@@ -18,7 +18,7 @@ public class Ticket extends  AbstractEntity {
     private Passenger passenger;
 
     /*Used by JPA*/
-    protected Ticket(){
+    public Ticket(){
     }
 
     public Ticket(double price){

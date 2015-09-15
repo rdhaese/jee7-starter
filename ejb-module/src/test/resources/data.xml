@@ -19,7 +19,8 @@
 
     <plane id="1000" version="1" type="very big" />
 
-    <flight id="1000" version="1" plane_id="1000" />
+    <flight id="1000" version="1" plane_id="1000" name="flight 1"/>
+    <flight id="1001" version="1" plane_id="1000" name="flight 2"/>
 
     <ticket id="1000" version="1" price="150" status="PURCHASED" flight_id="1000" passenger_id="1000" />
     <ticket id="2000" version="1" price="150" status="PURCHASED" flight_id="1000" passenger_id="1000" />

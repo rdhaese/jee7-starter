@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Passengers</title>
+</h:head>
+<h:body>
+    <h1>All Passenger</h1>
+    <p:dataTable value="#{passengerController.findAll()}" var="pass">
+        <p:column>
+         <f:facet name="header">
+             <h:outputText value="SSN" />
+         </f:facet>
+           <h:outputText value="#{pass.ssn}" />
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="First Name" />
+            </f:facet>
+            <h:outputText value="#{pass.firstName}" />
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Last Name" />
+            </f:facet>
+            <h:outputText value="#{pass.lastName}" />
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Ticket" />
+            </f:facet>
+            <h:form><p:commandButton value="Add Ticket" action="#{ticketController.newTicket(pass.id)}" /></h:form>
+        </p:column>
+    </p:dataTable>
+
+</h:body>
+</html>

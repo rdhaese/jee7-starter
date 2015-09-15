@@ -18,7 +18,7 @@ public class PassengerRepositoryTest extends DataSetPersistenceTest{
 
     @Before
     public void setUp(){
-        passengerRepo = new PassengerRepository(entityManager());
+        passengerRepo = new PassengerRepository();
     }
 
     @Test
